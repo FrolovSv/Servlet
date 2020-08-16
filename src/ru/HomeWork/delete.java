@@ -43,6 +43,7 @@ public class delete extends HttpServlet {
 
     private void getJsonResponse(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         response.setCharacterEncoding("UTF-8");
+        // если нужно отправлять ответ в виде json то нужно убрать комментарий следующей строки
         //response.setContentType("application/json;charset=utf-8");
         response.setContentType("text/html;charset=utf-8");
         PrintWriter pw = response.getWriter();
@@ -63,11 +64,13 @@ public class delete extends HttpServlet {
         Integer id = jsObject.get("id").getAsInt();
 
         if (model.deleteUser(id)) {
+            // если нужно отпавлять отчет в формате json то нужно изменить pw.print
             pw.print("<html>"+
                     "<h3>Пользователь с ID = " + id +" - успешно удален</h3><br/>" +
                     "<a href=\"index.jsp\">Домой</a><br/>"+
                     "</html>");
         }else {
+            // если нужно отпавлять отчет в формате json то нужно изменить pw.print
             pw.print("<html>" +
                     "<h3>Пользователя с номером = "+ id +" - нет в базе ((</h3><br/>" +
                     "<a href=\"index.jsp\">Домой</a><br/>"+

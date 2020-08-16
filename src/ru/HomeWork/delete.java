@@ -85,10 +85,17 @@ public class delete extends HttpServlet {
         Integer id = Integer.parseInt(request.getParameter("id"));
 
         if (model.deleteUser(id)) {
-            pw.print("<html>"+
-                    "<h3>Пользователь с ID = " + id +" - успешно удален</h3><br/>" +
-                    "<a href=\"index.jsp\">Домой</a><br/>"+
-                    "</html>");
+            if (id>0) {
+                pw.print("<html>" +
+                        "<h3>Пользователь с ID = " + id + " - успешно удален</h3><br/>" +
+                        "<a href=\"index.jsp\">Домой</a><br/>" +
+                        "</html>");
+            }else {
+                pw.print("<html>" +
+                        "<h3>Все пользователи успешно удалены</h3><br/>" +
+                        "<a href=\"index.jsp\">Домой</a><br/>" +
+                        "</html>");
+            }
         }else {
             pw.print("<html>" +
                     "<h3>Пользователя с номером = "+ id +" - нет в базе ((</h3><br/>" +
